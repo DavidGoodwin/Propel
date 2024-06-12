@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
 set -x
-
 id
+pwd
+cd $(dirname $0) 
 
-/bin/bash docker/reset.sh
+env
 
-curl -o composer https://getcomposer.org/download/2.5.1/composer.phar
-chmod 755 composer
-
-./composer install -n
-bash test/reset_tests.sh
+bash -x ../test/reset-tests.sh
