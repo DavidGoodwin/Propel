@@ -769,8 +769,12 @@ class BasePeer
 
                 $spacePos = strpos($columnName, ' ');
 
+                // see: https://github.com/propelorm/Propel/issues/1104#issuecomment-2127271218
                 if ($spacePos !== false) {
-                    $direction = substr($columnName, $spacePos);
+                    $direction = strtoupper(substr($columnName, $spacePos));
+                    if (!in_array(trim($direction), ['ASC', 'DESC'])) {
+                        $direction = '';
+                    }
                     $columnName = substr($columnName, 0, $spacePos);
                 } else {
                     $direction = '';
