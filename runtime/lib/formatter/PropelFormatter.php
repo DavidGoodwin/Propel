@@ -26,7 +26,7 @@ abstract class PropelFormatter
         $hasLimit = false,
         $currentObjects = array();
 
-    public function __construct(ModelCriteria $criteria = null)
+    public function __construct(?ModelCriteria $criteria = null)
     {
         if (null !== $criteria) {
             $this->init($criteria);

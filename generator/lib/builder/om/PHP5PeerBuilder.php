@@ -736,10 +736,10 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      *
      * @param      Criteria \$criteria
      * @param      boolean \$distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @return int Number of matching rows.
      */
-    public static function doCount(Criteria \$criteria, \$distinct = false, PropelPDO \$con = null)
+    public static function doCount(Criteria \$criteria, \$distinct = false, ?PropelPDO \$con = null)
     {
         // we may modify criteria, so copy it first
         \$criteria = clone \$criteria;
@@ -794,12 +794,12 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Selects one object from the DB.
      *
      * @param      Criteria \$criteria object used to create the SELECT statement.
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @return "               . $this->getObjectClassname() . "
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectOne(Criteria \$criteria, PropelPDO \$con = null)
+    public static function doSelectOne(Criteria \$criteria, ?PropelPDO \$con = null)
     {
         \$critcopy = clone \$criteria;
         \$critcopy->setLimit(1);
@@ -823,13 +823,13 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
     /**
      * Selects several row from the DB.
      *
-     * @param      Criteria \$criteria The Criteria object used to build the SELECT statement.
-     * @param      PropelPDO \$con
+     * @param Criteria \$criteria The Criteria object used to build the SELECT statement.
+     * @param ?PropelPDO \$con = null
      * @return array           Array of selected Objects
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelect(Criteria \$criteria, PropelPDO \$con = null)
+    public static function doSelect(Criteria \$criteria, ?PropelPDO \$con = null)
     {
         return " . $this->getPeerClassname() . "::populateObjects(" . $this->getPeerClassname() . "::doSelectStmt(\$criteria, \$con));
     }";
@@ -850,14 +850,14 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Use this method directly if you want to work with an executed statement directly (for example
      * to perform your own object hydration).
      *
-     * @param      Criteria \$criteria The Criteria object used to build the SELECT statement.
-     * @param      PropelPDO \$con The connection to use
+     * @param  Criteria \$criteria The Criteria object used to build the SELECT statement.
+     * @param  ?PropelPDO \$con The connection to use
      * @return PDOStatement The executed PDOStatement object.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      * @see        " . $this->basePeerClassname . "::doSelect()
      */
-    public static function doSelectStmt(Criteria \$criteria, PropelPDO \$con = null)
+    public static function doSelectStmt(Criteria \$criteria, ?PropelPDO \$con = null)
     {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_READ);
@@ -1457,13 +1457,13 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Performs an INSERT on the database, given a " . $this->getObjectClassname() . " or Criteria object.
      *
      * @param      mixed \$values Criteria or " . $this->getObjectClassname() . " object containing data that is used to create the INSERT statement.
-     * @param      PropelPDO \$con the PropelPDO connection to use
+     * @param      ?PropelPDO \$con the PropelPDO connection to use
      * @return mixed           The new primary key.
      * @throws Exception
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doInsert(\$values, PropelPDO \$con = null)
+    public static function doInsert(\$values, ?PropelPDO \$con = null)
     {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_WRITE);
@@ -1533,12 +1533,12 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Performs an UPDATE on the database, given a " . $this->getObjectClassname() . " or Criteria object.
      *
      * @param      mixed \$values Criteria or " . $this->getObjectClassname() . " object containing data that is used to create the UPDATE statement.
-     * @param      PropelPDO \$con The connection to use (specify PropelPDO connection object to exert more control over transactions).
+     * @param      ?PropelPDO \$con The connection to use (specify PropelPDO connection object to exert more control over transactions).
      * @return int             The number of affected rows (if supported by underlying database driver).
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doUpdate(\$values, PropelPDO \$con = null)
+    public static function doUpdate(\$values, ?PropelPDO \$con = null)
     {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_WRITE);
@@ -1589,12 +1589,12 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
     /**
      * Deletes all rows from the " . $table->getName() . " table.
      *
-     * @param      PropelPDO \$con the connection to use
+     * @param      ?PropelPDO \$con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).
      * @throws Exception
      * @throws PropelException
      */
-    public static function doDeleteAll(PropelPDO \$con = null)
+    public static function doDeleteAll(?PropelPDO \$con = null)
     {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_WRITE);
@@ -1645,14 +1645,14 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      *
      * @param      mixed \$values Criteria or " . $this->getObjectClassname() . " object or primary key or array of primary keys
      *              which is used to create the DELETE statement
-     * @param      PropelPDO \$con the connection to use
+     * @param      ?PropelPDO \$con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
      *				if supported by native driver or if emulated using Propel.
      * @throws Exception
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-     public static function doDelete(\$values, PropelPDO \$con = null)
+     public static function doDelete(\$values, ?PropelPDO \$con = null)
      {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_WRITE);
@@ -1812,10 +1812,10 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * This method should be used within a transaction if possible.
      *
      * @param      Criteria \$criteria
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @return int The number of affected rows (if supported by underlying database driver).
      */
-    protected static function doOnDeleteCascade(Criteria \$criteria, PropelPDO \$con)
+    protected static function doOnDeleteCascade(Criteria \$criteria, ?PropelPDO \$con)
     {
         // initialize var to track total num of affected rows
         \$affectedRows = 0;
@@ -1892,10 +1892,10 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * This method should be used within a transaction if possible.
      *
      * @param      Criteria \$criteria
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @return void
      */
-    protected static function doOnDeleteSetNull(Criteria \$criteria, PropelPDO \$con)
+    protected static function doOnDeleteSetNull(Criteria \$criteria, ?PropelPDO \$con)
     {
 
         // first find the objects that are implicated by the \$criteria
@@ -2026,10 +2026,10 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Retrieve a single object by pkey.
      *
      * @param " . $col->getPhpType() . " \$pk the primary key.
-     * @param      PropelPDO \$con the connection to use
+     * @param      ?PropelPDO \$con the connection to use
      * @return " . $this->getObjectClassname() . "
      */
-    public static function " . $this->getRetrieveMethodName() . "(\$pk, PropelPDO \$con = null)
+    public static function " . $this->getRetrieveMethodName() . "(\$pk, ?PropelPDO \$con = null)
     {
 
         if (null !== (\$obj = " . $this->getPeerClassname() . "::getInstanceFromPool(" . $this->getInstancePoolKeySnippet('$pk') . "))) {
@@ -2063,12 +2063,12 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Retrieve multiple objects by pkey.
      *
      * @param      array \$pks List of primary keys
-     * @param      PropelPDO \$con the connection to use
+     * @param      ?PropelPDO \$con the connection to use
      * @return "               . $this->getObjectClassname() . "[]
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function " . $this->getRetrieveMethodName() . "s(\$pks, PropelPDO \$con = null)
+    public static function " . $this->getRetrieveMethodName() . "s(\$pks, ?PropelPDO \$con = null)
     {
         if (\$con === null) {
             \$con = Propel::getConnection(" . $this->getPeerClassname() . "::DATABASE_NAME, Propel::CONNECTION_READ);
@@ -2109,7 +2109,7 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * @param   $cptype $" . $clo;
         }
         $script .= "
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @return " . $this->getObjectClassname() . "
      */
     public static function " . $this->getRetrieveMethodName() . "(";
@@ -2122,7 +2122,7 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
 
         $script .= implode(', ', $php);
 
-        $script .= ", PropelPDO \$con = null) {
+        $script .= ", ?PropelPDO \$con = null) {
         \$_instancePoolKey = " . $this->getInstancePoolKeySnippet($php) . ";";
         $script .= "
          if (null !== (\$obj = " . $this->getPeerClassname() . "::getInstanceFromPool(\$_instancePoolKey))) {
@@ -2291,13 +2291,13 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
     /**
      * Selects a collection of $className objects pre-filled with their $joinClassName objects.
      * @param      Criteria  \$criteria
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return array           Array of $className objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoin" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$con = null, \$join_behavior = $join_behavior)
+    public static function doSelectJoin" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         \$criteria = clone \$criteria;
 
@@ -2428,11 +2428,11 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      *
      * @param      Criteria \$criteria
      * @param      boolean \$distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return int Number of matching rows.
      */
-    public static function doCountJoin" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$distinct = false, PropelPDO \$con = null, \$join_behavior = $join_behavior)
+    public static function doCountJoin" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$distinct = false, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         // we're going to modify criteria, so copy it first
         \$criteria = clone \$criteria;
@@ -2501,13 +2501,13 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Selects a collection of $className objects pre-filled with all related objects.
      *
      * @param      Criteria  \$criteria
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return array           Array of $className objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAll(Criteria \$criteria, \$con = null, \$join_behavior = $join_behavior)
+    public static function doSelectJoinAll(Criteria \$criteria, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         \$criteria = clone \$criteria;
 
@@ -2670,11 +2670,11 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      *
      * @param      Criteria \$criteria
      * @param      boolean \$distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAll(Criteria \$criteria, \$distinct = false, PropelPDO \$con = null, \$join_behavior = $join_behavior)
+    public static function doCountJoinAll(Criteria \$criteria, \$distinct = false, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         // we're going to modify criteria, so copy it first
         \$criteria = clone \$criteria;
@@ -2766,13 +2766,13 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      * Selects a collection of " . $this->getObjectClassname() . " objects pre-filled with all related objects except " . $thisTableObjectBuilder->getFKPhpNameAffix($fk) . ".
      *
      * @param      Criteria  \$criteria
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return array           Array of " . $this->getObjectClassname() . " objects.
      * @throws PropelException Any exceptions caught during processing will be
      *		 rethrown wrapped into a PropelException.
      */
-    public static function doSelectJoinAllExcept" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$con = null, \$join_behavior = $join_behavior)
+    public static function doSelectJoinAllExcept" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         \$criteria = clone \$criteria;
 
@@ -2956,11 +2956,11 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
      *
      * @param      Criteria \$criteria
      * @param      boolean \$distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO \$con
+     * @param      ?PropelPDO \$con
      * @param      String    \$join_behavior the type of joins to use, defaults to $join_behavior
      * @return int Number of matching rows.
      */
-    public static function doCountJoinAllExcept" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$distinct = false, PropelPDO \$con = null, \$join_behavior = $join_behavior)
+    public static function doCountJoinAllExcept" . $thisTableObjectBuilder->getFKPhpNameAffix($fk, $plural = false) . "(Criteria \$criteria, \$distinct = false, ?PropelPDO \$con = null, \$join_behavior = $join_behavior)
     {
         // we're going to modify criteria, so copy it first
         \$criteria = clone \$criteria;

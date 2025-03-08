@@ -97,20 +97,20 @@ interface Persistent
     /**
      * Deletes the object.
      *
-     * @param PropelPDO $con
+     * @param ?PropelPDO $con
      *
      * @return void
      * @throws Exception
      */
-    public function delete(PropelPDO $con = null);
+    public function delete(?PropelPDO $con = null);
 
     /**
      * Saves the object.
      *
-     * @param PropelPDO $con
+     * @param ?PropelPDO $con
      *
      * @return void
      * @throws Exception
      */
-    public function save(PropelPDO $con = null);
+    public function save(?PropelPDO $con = null);
 }

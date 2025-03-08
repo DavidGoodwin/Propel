@@ -29,7 +29,7 @@ class ModelWith
     protected $leftPhpName;
     protected $rightPhpName;
 
-    public function __construct(ModelJoin $join = null)
+    public function __construct(?ModelJoin $join = null)
     {
         if (null !== $join) {
             $this->init($join);

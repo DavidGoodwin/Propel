@@ -609,11 +609,11 @@ class PropelPDO extends PDO
      * @see       self::setLogger()
      *
      * @param string  $msg           Message to log.
-     * @param integer $level         Log level to use; will use self::setLogLevel() specified level by default.
-     * @param string  $methodName    Name of the method whose execution is being logged.
-     * @param array   $debugSnapshot Previous return value from self::getDebugSnapshot().
+     * @param ?integer $level         Log level to use; will use self::setLogLevel() specified level by default.
+     * @param ?string  $methodName    Name of the method whose execution is being logged.
+     * @param ?array   $debugSnapshot Previous return value from self::getDebugSnapshot().
      */
-    public function log($msg, $level = null, $methodName = null, array $debugSnapshot = null)
+    public function log($msg, $level = null, $methodName = null, ?array $debugSnapshot = null)
     {
         // If logging has been specifically disabled, this method won't do anything
         if (!$this->getLoggingConfig('enabled', true)) {
