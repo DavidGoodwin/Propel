@@ -61,9 +61,9 @@ class Join
      * Use it preferably with no arguments, and then use addCondition() and setJoinType()
      * Syntax with arguments used mainly for backwards compatibility
      *
-     * @param string $leftColumn The left column of the join condition
+     * @param array|string $leftColumn The left column of the join condition
      *                            (may contain an alias name)
-     * @param string $rightColumn The right column of the join condition
+     * @param array|string $rightColumn The right column of the join condition
      *                            (may contain an alias name)
      * @param string $joinType The type of the join. Valid join types are null (implicit join),
      *                            Criteria::LEFT_JOIN, Criteria::RIGHT_JOIN, and Criteria::INNER_JOIN

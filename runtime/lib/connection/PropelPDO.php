@@ -281,7 +281,7 @@ class PropelPDO extends PDO
      *
      * @return bool Whether operation was successful.
      */
-    public function rollBack():bool
+    public function rollBack(): bool
     {
         $return = true;
         $opcount = $this->nestedTransactionCount;

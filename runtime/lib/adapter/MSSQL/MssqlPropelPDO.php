@@ -21,14 +21,13 @@ class MssqlPropelPDO extends PropelPDO
      * It is necessary to override the abstract PDO transaction functions here, as
      * the PDO driver for MSSQL does not support transactions.
      *
-     * @return bool
      */
-    public function beginTransaction()
+    public function beginTransaction(): bool
     {
         $return = true;
         $opcount = $this->getNestedTransactionCount();
         if ($opcount === 0) {
-            $return = self::exec('BEGIN TRANSACTION');
+            $return = (bool) self::exec('BEGIN TRANSACTION');
             if ($this->useDebug) {
                 $this->log('Begin transaction', null, __METHOD__);
             }
@@ -49,7 +48,7 @@ class MssqlPropelPDO extends PropelPDO
      *
      * @throws PropelException
      */
-    public function commit()
+    public function commit(): bool
     {
         $return = true;
         $opcount = $this->getNestedTransactionCount();
@@ -58,7 +57,7 @@ class MssqlPropelPDO extends PropelPDO
                 if ($this->isUncommitable) {
                     throw new PropelException('Cannot commit because a nested transaction was rolled back');
                 } else {
-                    $return = self::exec('COMMIT TRANSACTION');
+                    $return = (bool) self::exec('COMMIT TRANSACTION');
                     if ($this->useDebug) {
                         $this->log('Commit transaction', null, __METHOD__);
                     }
@@ -76,15 +75,14 @@ class MssqlPropelPDO extends PropelPDO
      * It is necessary to override the abstract PDO transaction functions here, as
      * the PDO driver for MSSQL does not support transactions.
      *
-     * @return integer
      */
-    public function rollBack()
+    public function rollBack(): bool
     {
         $return = true;
         $opcount = $this->getNestedTransactionCount();
         if ($opcount > 0) {
             if ($opcount === 1) {
-                $return = self::exec('ROLLBACK TRANSACTION');
+                $return = (bool) self::exec('ROLLBACK TRANSACTION');
                 if ($this->useDebug) {
                     $this->log('Rollback transaction', null, __METHOD__);
                 }

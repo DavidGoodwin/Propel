@@ -112,7 +112,7 @@ interface NodeObject extends IteratorAggregate
     /**
      * Sets the children array of the node in the tree
      *
-     * @param Node[] $children array of Propel node object
+     * @param NodeObject[] $children array of Propel node object
      *
      * @return object The current object (for fluent API support)
      */
@@ -121,7 +121,7 @@ interface NodeObject extends IteratorAggregate
     /**
      * Sets the parentNode of the node in the tree
      *
-     * @param Node $parent Propel node object
+     * @param NodeObject $parent Propel node object
      *
      * @return object The current object (for fluent API support)
      */
@@ -130,7 +130,7 @@ interface NodeObject extends IteratorAggregate
     /**
      * Sets the previous sibling of the node in the tree
      *
-     * @param Node $node Propel node object
+     * @param NodeObject $node Propel node object
      *
      * @return object The current object (for fluent API support)
      */
@@ -139,7 +139,7 @@ interface NodeObject extends IteratorAggregate
     /**
      * Sets the next sibling of the node in the tree
      *
-     * @param Node $node Propel node object
+     * @param NodeObject $node Propel node object
      *
      * @return object The current object (for fluent API support)
      */

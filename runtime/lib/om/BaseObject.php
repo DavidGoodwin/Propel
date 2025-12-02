@@ -307,8 +307,6 @@ abstract class BaseObject
     /**
      * Get the associative array of the virtual columns in this object
      *
-     * @param string $name The virtual column name
-     *
      * @return array
      */
     public function getVirtualColumns()

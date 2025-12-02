@@ -677,6 +677,10 @@ class BasePeer
         // Handle joins
         // joins with a null join type will be added to the FROM clause and the condition added to the WHERE clause.
         // joins of a specified type: the LEFT side will be added to the fromClause and the RIGHT to the joinClause
+
+        /**
+         * @var Join $join
+         */
         foreach ($criteria->getJoins() as $join) {
 
             $join->setDB($db);
