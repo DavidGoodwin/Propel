@@ -15,5 +15,19 @@
     </projectFiles>
     <issueHandlers>
         <ParamNameMismatch errorLevel="suppress"/>
+
+        <PossiblyUnusedMethod errorLevel="suppress"/>
+        <MissingOverrideAttribute errorLevel="suppress"/>
+        <UnusedClass errorLevel="suppress"/>
+        <UnevaluatedCode errorLevel="suppress"/>
+        <PossiblyUnusedProperty errorLevel="suppress"/>
+        <PossiblyUnusedParam errorLevel="suppress"/>
+        <UnusedVariable errorLevel="suppress"/>
+        <PossiblyUnusedReturnValue errorLevel="suppress"/>
+        <UnsupportedPropertyReferenceUsage errorLevel="suppress"/>
+        <MissingTemplateParam errorLevel="suppress"/>
+        <UnusedMethod errorLevel="suppress"/>
+        <UnusedProperty errorLevel="suppress"/>
+
     </issueHandlers>
 </psalm>
