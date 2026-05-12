@@ -518,7 +518,7 @@ class PropelSchemaReverseTask extends PDOTask
         $msg = self::$validatorMessages[strtolower($type)];
         $tmp = compact($msg['var']);
         array_unshift($tmp, $msg['msg']);
-        $msg = call_user_func_array('sprintf', $tmp);
+        $msg = call_user_func_array('sprintf', array_values($tmp));
 
         return $msg;
     }
